@@ -36,10 +36,6 @@ else:
         image = Image.open(fname)
         st.sidebar.image(image)
         st.session_state['result'] = image
-        
-# if st.session_state['result']:
-#     st.image(st.session_state['result'])
-#     st.text(classifier(st.session_state['result']))
 
 if 'result' in st.session_state and st.session_state['result'] is not None:
     st.image(st.session_state['result'])
@@ -49,6 +45,7 @@ if 'result' in st.session_state and st.session_state['result'] is not None:
     max_score_prediction = max(classification_results, key=lambda x: x['score'])
     max_score_label = max_score_prediction['label']
     # Display the highest score label
+    st.text(classifier(st.session_state['result']))
     st.text(f"Prediction: {max_score_label} ({max_score_prediction['score']*100:.2f}%)")
     
 st.sidebar.image('image/aib.png')
