@@ -36,8 +36,20 @@ else:
         image = Image.open(fname)
         st.sidebar.image(image)
         st.session_state['result'] = image
-if st.session_state['result']:
+        
+# if st.session_state['result']:
+#     st.image(st.session_state['result'])
+#     st.text(classifier(st.session_state['result']))
+
+if 'result' in st.session_state and st.session_state['result'] is not None:
     st.image(st.session_state['result'])
-    st.text(classifier(st.session_state['result']))
+    # Get classification results
+    classification_results = classifier(st.session_state['result'])
+    # Find the highest score label
+    max_score_prediction = max(classification_results, key=lambda x: x['score'])
+    max_score_label = max_score_prediction['label']
+    # Display the highest score label
+    st.text(f"Prediction: {max_score_label} ({max_score_prediction['score']*100:.2f}%)")
+    
 st.sidebar.image('image/aib.png')
 st.sidebar.write('โครงการ AI Builders จัดขึ้นจากความร่วมมือระหว่าง VISTEC, AIResearch, Central Retail Digital และมหาวิทยาลัยมหิดลเพื่อพัฒนาองค์ความรู้ทางด้านวิทยาศาสตร์ข้อมูล (Data Science) และปัญญาประดิษฐ์ (Artificial Intelligence / AI) ให้กับน้องๆระดับมัธยมต้น-ปลาย ที่สนใจอยากเรียนรู้และพัฒนาโครงงานที่ใช้ทักษะในด้านนี้เพื่อประยุกต์ใช้จริงในชีวิตประจำวัน ในปี 2024 เราได้รับการสนับสนุนจาก บพค., AWS, DELL, VISAI, กลุ่ม OSK Artificial Intelligence, และ Krungsri Nimble')
