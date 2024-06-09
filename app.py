@@ -9,6 +9,7 @@ from utils.pipeline import thyroid_image_classification
 
 st.header('Thytra (Thyroid Ultrasound Image Classification for Disease Diagnosis)')
 st.info("การใช้งาน เลือกไฟล์รูปภาพอัลตราซาวนด์ต่อมไทรอยด์ โมเดลจะทำการ predict ว่ามีโอกาสเป็น Benign , Malignant , Normal กี่ %")
+
 classifier = thyroid_image_classification(model_name="agent593/Thyroid-Ultrasound-Image-Classification-ViTModel")
 st.sidebar.image('image/logo.jpg')
 st.sidebar.write('Ai Builders ปีที่ 4 กลุ่ม loyal-coyotes')
@@ -46,7 +47,7 @@ if 'result' in st.session_state and st.session_state['result'] is not None:
     max_score_prediction = max(classification_results, key=lambda x: x['score'])
     max_score_label = max_score_prediction['label']
     # Display the highest score label
-    st.text(classifier(st.session_state['result']))
+    # st.text(classifier(st.session_state['result']))
     st.text(f"Prediction: {max_score_label} ({max_score_prediction['score']*100:.2f}%)")
     
 st.sidebar.image('image/aib.png')
