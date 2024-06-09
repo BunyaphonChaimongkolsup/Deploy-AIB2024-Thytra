@@ -8,6 +8,7 @@ from PIL import Image
 from utils.pipeline import thyroid_image_classification
 
 st.header('Thytra (Thyroid Ultrasound Image Classification for Disease Diagnosis)')
+st.info("การใช้งาน เลือกไฟล์รูปภาพอัลตราซาวนด์ต่อมไทรอยด์ โมเดลจะทำการ predict ว่ามีโอกาสเป็น Benign , Malignant , Normal กี่ %")
 classifier = thyroid_image_classification(model_name="agent593/Thyroid-Ultrasound-Image-Classification-ViTModel")
 st.sidebar.image('image/logo.jpg')
 st.sidebar.write('Ai Builders ปีที่ 4 กลุ่ม loyal-coyotes')
