@@ -10,11 +10,17 @@ from utils.pipeline import thyroid_image_classification
 st.header('Thytra (Thyroid Ultrasound Image Classification for Disease Diagnosis)')
 st.info("การใช้งาน เลือกไฟล์รูปภาพอัลตราซาวนด์ต่อมไทรอยด์ โมเดลจะทำการ predict ว่ามีโอกาสเป็น Benign , Malignant , Normal กี่ %")
 
+@st.cache_resource
+def load_classifier(model_name):
+    return thyroid_image_classification(model_name=model_name)
+
 classifier = thyroid_image_classification(model_name="agent593/Thyroid-Ultrasound-Image-Classification-ViTModel")
+
 st.sidebar.image('image/logo.jpg')
 st.sidebar.write('Ai Builders ปีที่ 4 กลุ่ม loyal-coyotes')
 st.sidebar.write('จัดทำโดย บุณยาพร ชัยมงคลทรัพย์')
 st.sidebar.write('### Enter image to classify')
+
 option = st.sidebar.radio('', ['Use a validation image', 'Use your own image'])
 valid_images = glob.glob('data/test/*')
 valid_images.sort()
